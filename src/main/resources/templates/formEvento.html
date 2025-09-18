@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário do Evento</title>
+</head>
+<body>
+    <h1>Adicionar Evento</h1>
+
+    <form action="/eventos" method="post">
+        <label for="nome">Nome do Evento:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="data">Data do Evento:</label>
+        <input type="date" id="data" name="data" required><br><br>
+
+        <label for="local">Local do Evento:</label>
+        <input type="text" id="local" name="local" required><br><br>
+
+        <label for="horario">Horário do Evento:</label>
+        <input type="time" id="horario" name="horario" required><br><br>
+
+        <button type="submit">Salvar Evento</button>
+        <button type="reset">Limpar</button>
+</body>
+</html>

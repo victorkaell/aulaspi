@@ -1,13 +1,18 @@
 package ifrn.pi.inicio.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ifrn.pi.inicio.models.Evento;
+import ifrn.pi.inicio.repositories.EventoRepository;
 
 @Controller
 public class EventosController {
+	
+	@Autowired
+	private EventoRepository er;
 	
 	@GetMapping("/eventos/form")
 	public String form() {
@@ -16,15 +21,8 @@ public class EventosController {
 	
 	@PostMapping("/eventos/adicionar")
 	public String adicionarEvento(Evento evento) {
-		System.out.println("Evento foi adicionado");
-		System.out.println("Nome: " + evento.getNome());
-		System.out.println("Local: " + evento.getLocal());
-		System.out.println("Data: " + evento.getData());
-		System.out.println("Horário: " + evento.getHorario());
-		
-		// Ao realizar o passo 1, o evento foi registrado com a devida confirmação e os dados foram enviados.
-		// Ao realizar o passo 2, foi possível obter os valores pelo String e imprimi-los no console.
-		// Ao realizar o passo 3, os valores continuaram os mesmos após simplificar o parâmetro.
+		System.out.println(evento);
+		er.save(evento);
 		
 		return "eventoAdicionado";
 	}

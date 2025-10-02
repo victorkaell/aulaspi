@@ -23,6 +23,6 @@ public class IndexController {
 		
 		System.out.println("Chamou o método index");
 		
-		return "home";
+		return "redirect:/eventos";
 	}
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Formulário do Evento</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+	
+	<div class="container">
+		<h1>Adicionar Evento</h1>
+		
+		<form action="/eventos/adicionar" method="post">
+	        <label for="nome">Nome do Evento:</label>
+	        <input type="text" id="nome" name="nome" required><br><br>
+	
+	        <label for="data">Data do Evento:</label>
+	        <input type="date" id="data" name="data" required><br><br>
+	
+	        <label for="local">Local do Evento:</label>
+	        <input type="text" id="local" name="local" required><br><br>
+	
+	        <label for="horario">Horário do Evento:</label>
+	        <input type="time" id="horario" name="horario" required><br><br>
+	
+	        <button type="submit" class="waves-effect waves-light btn">Salvar Evento</button>
+	        <button type="reset" class="waves-effect waves-light btn">Limpar</button>
+	     </form>  
+	</div> 
+</body>
+</html>

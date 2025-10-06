@@ -27,7 +27,7 @@
 	            <tbody>
 	                <tr th:each="evento : ${eventos}">
 	                    <td th:text="${evento.id}">1</td>
-	                    <td th:text="${evento.nome}">Nome do Evento de Exemplo</td>
+	                    <td><a th:href="@{/eventos/{id}(id=${evento.id})}"><span th:text="${evento.nome}">Nome do Evento de Exemplo</span></a></td>
 	                    <td th:text="${evento.local}">Local do Evento</td>
 	                    <td th:text="${evento.data}">01/01/2025</td>
 	                </tr>

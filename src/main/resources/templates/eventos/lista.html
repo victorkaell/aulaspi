@@ -22,6 +22,7 @@
 	                    <th>Nome do Evento</th>
 	                    <th>Local</th>
 	                    <th>Data</th>
+	                    <th>Horário</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -30,6 +31,7 @@
 	                    <td><a th:href="@{/eventos/{id}(id=${evento.id})}"><span th:text="${evento.nome}">Nome do Evento de Exemplo</span></a></td>
 	                    <td th:text="${evento.local}">Local do Evento</td>
 	                    <td th:text="${evento.data}">01/01/2025</td>
+	                    <td th:text="${evento.horario}">11:30</td>
 	                </tr>
 	            </tbody>
 	        </table>

@@ -63,6 +63,9 @@ public class EventosController {
 		Evento evento = opt.get();
 		mv.addObject("evento", evento);
 		
+		List<Convidado> convidados = cr.findByEvento(evento);
+		mv.addObject("convidados", convidados);
+		
 		return mv;
 	}
 	

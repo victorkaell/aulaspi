@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>Início</title>
-  </head>
-  <body>
-  	<div th:replace="~{menu :: menu}"></div>
-  	
-  	<div class="container">
-	    <h3>Listagem de Eventos</h3>
-	    <div>
-	        <table class="highlight">
-	            <thead>
-	                <tr>
-	                    <th>ID</th>
-	                    <th>Nome do Evento</th>
-	                    <th>Local</th>
-	                    <th>Data</th>
-	                    <th>Horário</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-	                <tr th:each="evento : ${eventos}">
-	                    <td th:text="${evento.id}">1</td>
-	                    <td><a th:href="@{/eventos/{id}(id=${evento.id})}"><span th:text="${evento.nome}">Nome do Evento de Exemplo</span></a></td>
-	                    <td th:text="${evento.local}">Local do Evento</td>
-	                    <td th:text="${evento.data}">01/01/2025</td>
-	                    <td th:text="${evento.horario}">11:30</td>
-	                    <td><a th:href="@{/eventos/{id}/remover(id=${evento.id})}" style="color:black"><i class="material-icons">delete</i></a></td>
-	                </tr>
-	            </tbody>
-	        </table>
-	    </div>
-  	</div>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Início</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+		<h3>Listagem de Eventos</h3>
+		<div>
+			<table class="highlight">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome do Evento</th>
+						<th>Local</th>
+						<th>Data</th>
+						<th>Horário</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="evento : ${eventos}">
+						<td th:text="${evento.id}">1</td>
+						<td><a th:href="@{/eventos/{id}(id=${evento.id})}"><span
+								th:text="${evento.nome}">Nome do Evento de Exemplo</span></a></td>
+						<td th:text="${evento.local}">Local do Evento</td>
+						<td th:text="${evento.data}">01/01/2025</td>
+						<td th:text="${evento.horario}">11:30</td>
+						<td>
+						
+						<a th:href="@{/eventos/{id}/selecionar(id=${evento.id})}" style="color: black"><i class="material-icons">edit</i></a>
+						<a th:href="@{/eventos/{id}/remover(id=${evento.id})}"
+							style="color: black"><i class="material-icons">delete</i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
 </html>

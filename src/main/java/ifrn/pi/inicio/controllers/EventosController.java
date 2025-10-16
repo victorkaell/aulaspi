@@ -19,72 +19,88 @@ import ifrn.pi.inicio.repositories.EventoRepository;
 @Controller
 @RequestMapping("/eventos")
 public class EventosController {
-	
+
 	@Autowired
 	private EventoRepository er;
 	@Autowired
 	private ConvidadoRepository cr;
-	
+
 	@GetMapping("/form")
 	public String form() {
 		return "eventos/formEvento";
 	}
-	
+
 	@PostMapping
 	public String adicionarEvento(Evento evento) {
 		System.out.println(evento);
 		er.save(evento);
-		
+
 		return "eventos/eventoAdicionado";
 	}
-	
+
 	@GetMapping
 	public ModelAndView listarEventos() {
 		List<Evento> eventos = er.findAll();
 		ModelAndView mv = new ModelAndView("eventos/lista");
 		mv.addObject("eventos", eventos);
-		
+
 		System.out.println("Chamou o método index");
-		
+
 		return mv;
 	}
-	
+
 	@GetMapping("/{id}")
 	public ModelAndView detalharEvento(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView();
 		Optional<Evento> opt = er.findById(id);
-		
+
 		if (opt.isEmpty()) {
 			mv.setViewName("redirect:/eventos");
 			return mv;
 		}
-		
+
 		mv.setViewName("eventos/detalhes");
 		Evento evento = opt.get();
 		mv.addObject("evento", evento);
-		
+
 		List<Convidado> convidados = cr.findByEvento(evento);
 		mv.addObject("convidados", convidados);
-		
+
 		return mv;
 	}
-	
+
 	@PostMapping("/{idEvento}")
 	public String salvarConvidado(@PathVariable Long idEvento, Convidado convidado) {
-		
+
 		System.out.println("ID do Evento: " + idEvento);
 		System.out.println(convidado);
-		
+
 		Optional<Evento> opt = er.findById(idEvento);
-		if(opt.isEmpty()) {
+		if (opt.isEmpty()) {
 			return "redirect:/eventos";
 		}
-		
+
 		Evento evento = opt.get();
 		convidado.setEvento(evento);
-		
+
 		cr.save(convidado);
-		
+
 		return "redirect:/eventos/{idEvento}";
+	}
+
+	@GetMapping("/{id}/remover")
+	public String apagarEvento(@PathVariable Long id) {
+		Optional<Evento> opt = er.findById(id);
+
+		if (!opt.isEmpty()) {
+			Evento evento = opt.get();
+
+			List<Convidado> convidados = cr.findByEvento(evento);
+			cr.deleteAll(convidados);
+
+			er.delete(evento);
+		}
+
+		return "redirect:/eventos";
 	}
 }

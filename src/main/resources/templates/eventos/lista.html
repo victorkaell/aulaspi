@@ -6,6 +6,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Início</title>
   </head>
@@ -32,6 +33,7 @@
 	                    <td th:text="${evento.local}">Local do Evento</td>
 	                    <td th:text="${evento.data}">01/01/2025</td>
 	                    <td th:text="${evento.horario}">11:30</td>
+	                    <td><a th:href="@{/eventos/{id}/remover(id=${evento.id})}" style="color:black"><i class="material-icons">delete</i></a></td>
 	                </tr>
 	            </tbody>
 	        </table>

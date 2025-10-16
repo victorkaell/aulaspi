@@ -7,6 +7,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <!-- Compiled and minified JavaScript -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <title>Evento</title>
@@ -47,12 +49,15 @@
 				<div class="card blue-grey darken-1">
 					<div class="card-content white-text">
 						<span class="card-title">Adicionar Convidado:</span>
-						<form action="" method="post">
+						<form th:action="@{/eventos/{idEvento}(idEvento=${evento.id})}" method="post">
 							<div>
-								<label>Nome: </label> <input type="text" name="nome">
+								<input type="hidden" name="id" th:value="${convidado.id}" readonly="readonly">
 							</div>
 							<div>
-								<label>RG: </label> <input type="text" name="rg">
+								<label>Nome: </label> <input type="text" name="nome" th:value="${convidado.nome}" required>
+							</div>
+							<div>
+								<label>RG: </label> <input type="text" name="rg" th:value="${convidado.rg}" required>
 							</div>
 							<div>
 								<button type="submit" class="btn">Adicionar</button>
@@ -82,6 +87,10 @@
 									<td th:text="${convidado.id}">1</td>
 									<td th:text="${convidado.nome}">Nome do Convidado de Exemplo</td>
 									<td th:text="${convidado.rg}">000.000.000-00</td>
+									<td>
+									<a th:href="@{/eventos/{idEvento}/convidados/{idConvidado}/selecionar(idEvento=${evento.id},idConvidado=${convidado.id})}"style="color: black"><i class="material-icons">edit</i></a>
+									<a th:href="@{/eventos/{idEvento}/convidados/{idConvidado}/remover(idEvento=${evento.id},idConvidado=${convidado.id})}" style="color: black"><i class="material-icons">delete</i></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>

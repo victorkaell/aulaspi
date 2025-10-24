@@ -15,21 +15,25 @@
 	<div class="container">
 		<h1>Adicionar Evento</h1>
 		
-		<form action="/eventos" method="post">
-	        <input type="hidden" id="id" name="id" th:value="${evento.id}" readonly="readonly"><br><br>
+		<form action="/eventos" method="post" th:object="${evento}">
+	        <input type="hidden" th:field="*{id}" readonly="readonly"><br><br>
 		
 	        <label for="nome">Nome do Evento:</label>
-	        <input type="text" id="nome" name="nome" th:value="${evento.nome}" required><br><br>
+	        <input type="text" th:field="*{nome}" required><br><br>
+	        <p th:errors="*{nome}"></p>
 	
 	        <label for="data">Data do Evento:</label>
-	        <input type="date" id="data" name="data" th:value="${evento.data}" required><br><br>
+	        <input type="date" th:field="*{data}" required><br><br>
+	        <p th:errors="*{data}"></p>
 	
 	        <label for="local">Local do Evento:</label>
-	        <input type="text" id="local" name="local" th:value="${evento.local}" required><br><br>
-	
+	        <input type="text" th:field="*{local}" required><br><br>
+			<p th:errors="*{local}"></p>
+			
 	        <label for="horario">Horário do Evento:</label>
-	        <input type="time" id="horario" name="horario" th:value="${evento.horario}" required><br><br>
-	
+	        <input type="time" th:field="*{horario}" required><br><br>
+			<p th:errors="*{horario}"></p>
+			
 	        <button type="submit" class="waves-effect waves-light btn">Salvar</button>
 	        <button type="reset" class="waves-effect waves-light btn">Limpar</button>
 	     </form>  
